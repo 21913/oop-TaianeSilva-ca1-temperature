@@ -3,66 +3,89 @@
 
 package oop.dorsetcollege;
 
-        import java.awt.BorderLayout;
-        import java.awt.FlowLayout;
-        import java.awt.GridLayout;
-        import javax.swing.JTextField;
-        import javax.swing.*;
-        import java.awt.event.ActionEvent;
-        import java.awt.event.ActionListener;
-        import javax.swing.JButton;
+
+import java.awt.*;
+import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 public class ConvTemperature extends JFrame {
 
-    JLabel lbCelsius;
-    JLabel lbFahr;
+    JRadioButton btCelsius;
+    JRadioButton btFahr;
     JButton convFahToCel;
     JButton convCelToFah;
     JTextField txtCelsius;
     JTextField txtFahr;
+    JPanel panel1;
+    JPanel panel2;
 
     public ConvTemperature () {
 
-        super ("Temperature Convertor");
+        super ("Temperature Conversion");
         setLayout (new FlowLayout ());
 
-        lbCelsius = new JLabel ("Celsius:       ", SwingConstants.LEFT);
-        lbCelsius.setToolTipText("Temperture measurement of scale and unit.");
-        add (lbCelsius);
+        //Setting colors to be used on the panel
+        Color orange = new Color(253, 136, 47);
+        Color blue = new Color(18, 96, 153);
+        panel1 = new JPanel(new GridLayout());
+        panel2 = new JPanel(new GridLayout());
+        panel1.setBackground(orange);
+        panel2.setBackground(blue);
+
+        //The code bellow is to create the radio buttons
+        btCelsius = new JRadioButton ("Celsius");
+        add (btCelsius);
+        btCelsius.setBackground(orange);
+        btCelsius.setForeground(Color.WHITE);
         txtCelsius = new JTextField (10);
+        txtCelsius.setBackground(Color.WHITE);
+        //txtCelsius.setForeground(Color.WHITE);
         add (txtCelsius);
 
-        lbFahr = new JLabel ("Fahrenheit: ", SwingConstants.LEFT);
-        lbFahr.setToolTipText("Scale in Fahrenheit");
-        add (lbFahr);
+        btFahr = new JRadioButton ("Fahrenheit: ");
+        add (btFahr);
+        btFahr.setBackground(orange);
+        btFahr.setForeground(Color.WHITE);
         txtFahr = new JTextField (10);
+        txtFahr.setBackground(Color.WHITE);
+        //txtFahr.setForeground(Color.WHITE);
         add (txtFahr);
 
-        convCelToFah = new JButton ("Convertion from Celsius to Fahrenheit");
+        //Buttons for convertion
+        convCelToFah = new JButton ("Celsius to Fahrenheit");
+        convCelToFah.setBackground(blue);
+        convCelToFah.setForeground(Color.WHITE);
         add (convCelToFah);
 
-        convFahToCel = new JButton ("Convertion from Fahrenheit to Celsius");
+        convFahToCel = new JButton ("Fahrenheit to Celsius");
+        convFahToCel.setBackground(blue);
+        convFahToCel.setForeground(Color.WHITE);
         add (convFahToCel);
 
-
-        JPanel panel = new JPanel(new GridLayout(2, 2, 12, 6));
-        panel.add(lbCelsius);
-        panel.add(lbFahr);
+        //Code to set the layout for the panel
+        JPanel panel = new JPanel(new GridLayout(2, 2, 12, 10));
+        panel.add(btCelsius);
+        panel.add(btFahr);
         panel.add(txtCelsius);
         panel.add(txtFahr);
+        panel.setBackground(orange);
         add(panel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(convCelToFah);
         buttonPanel.add(convFahToCel);
         add(buttonPanel, BorderLayout.SOUTH);
+        buttonPanel.setBackground(orange);
 
         convCelToFah.addActionListener(new ListenerCelsius ());
         convFahToCel.addActionListener(new ListenerFahr ());
 
     }
 
-
+    //Code with the commands to calculate the conversion from Celsius to Fahrenheit
     private class ListenerCelsius implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
@@ -77,6 +100,7 @@ public class ConvTemperature extends JFrame {
         }
     }
 
+    //Code with the commands to calculate the conversion from Fahrenheit to Celsius
     private class ListenerFahr implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {

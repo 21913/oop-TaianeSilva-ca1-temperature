@@ -3,18 +3,20 @@
 
 package oop.dorsetcollege;
 
-import oop.dorsetcollege.ConvTemperature;
+import javax.swing.*;
+import java.awt.*;
 
-import javax.swing.JFrame;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        Color orange = new Color(253,136,47);
         ConvTemperature app = new ConvTemperature ();
         app.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        app.setSize (600, 180);
+        app.setSize (500, 150);
         app.setVisible (true);
+        app.getContentPane().setBackground(orange);
 
     }
 
